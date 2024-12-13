@@ -11,12 +11,22 @@ const bcrypt = require('bcryptjs');
 const cron = require('node-cron');
 const QRCode = require('qrcode');
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "final1"
+const connection = mysql.createConnection({
+    host: 'bu3ge2t0mtqlmmqq3bhi-mysql.services.clever-cloud.com', // Hostname
+    user: 'u2ji7sx0eu3z9us6',                                 // Username
+    password: 'KBYNckf7BvdELPXdmy84',                               // Password
+    database: 'bu3ge2t0mtqlmmqq3bhi',                        // Database Name
+    port: 3306                                               // Port
 });
+
+connection.connect(function(err) {
+    if (err) {
+        console.error('Error connecting to the database:', err);
+        return;
+    }
+    console.log('Connected to the database!');
+});
+
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
