@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Verification</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Overlay for contrast */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 0;
+        }
+
+        /* Content styling */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-family: 'Poiret One', cursive;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-success, .btn-danger {
+            font-weight: bold;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay loop muted>
+        <source src="/videos/Ageregister.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Content -->
+    <div class="content">
+        <h2>Age Verification</h2>
+        <p>You must be at least 21 to hop in</p>
+        <div class="button-container">
+            <form id="age-verification-form" action="/verify-age" method="POST">
+                <button type="submit" name="age_verified" value="true" class="btn btn-success">I am 21 or older</button>
+            </form>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+                <button type="button" name="age_verified" value="false" class="btn btn-danger">
+                    I am not 21
+                </button>
+            </a>
+        </div>
+        <p id="error-message" class="error-message" style="display: none;">You cannot access this website because you are under 20.</p>
+    </div>
+
+    <script>
+        // Handle the "I am not 20" button click
+        document.querySelector('.btn-danger').addEventListener('click', function () {
+            // Show the error message
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

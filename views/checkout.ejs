@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>checkout</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <!-- Hamburger and Logo -->
+            <div class="left-section">
+                <i class="bx bx-menu" id="hamburger-icon"></i>
+                <a href="/Home" class="logo">WEED INC.</a>
+            </div>
+    
+            <!-- Center Navbar -->
+            <div class="navbar">
+                <a href="/cannabis101" class="nav-link">Cannabis 101</a>
+                <a href="/Cannabis" class="nav-link">Strains</a>
+                <a href="/HowToUse" class="nav-link">How to use</a>
+                <a href="/News" class="nav-link">News</a>
+                <a href="/FAQ" class="nav-link">FAQ</a>
+                <a href="/ContactUs" class="nav-link">Contact Us</a>
+            </div>
+    
+            <!-- Right Icons -->
+            <div class="right-icons">
+                <a href="/cart"><i class='bx bx-cart-alt icon' id="cart-icon" data-quantity="0"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>WEED INC.</h2>
+            <i class="bx bx-x close-icon" id="close-icon"></i>
+        </div>
+        <ul id="sidebar-links" class="sidebar-links">
+            <li><a href="/login">Sign In</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/cannabis101">Cannabis 101</a></li>
+            <li><a href="/Cannabis">Strains</a></li>
+            <li><a href="/HowToUse">How to use</a></li>
+            <li><a href="/News">News</a></li>
+            <li><a href="/FAQ">FAQ</a></li>
+            <li><a href="/ContactUs">Contact Us</a></li>
+        </ul>   
+    </div>
+
+    <div class="container my-5">
+        <h1>Checkout</h1>
+        <form id="checkout-form">
+            <div class="mb-3">
+                <label for="recipientName" class="form-label">Recipient Name</label>
+                <input type="text" id="recipientName" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Shipping Address</label>
+                <textarea id="address" class="form-control" rows="3" required></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" id="proceed-payment">Generate QR Code</button>
+        </form>
+
+        <div id="qr-section" class="mt-5" style="display: none;">
+            <h3>Scan this QR Code to Pay</h3>
+            <div id="qr-code"></div>
+            <p>Total: $<span id="total"></span></p>
+            <button id="checkout" class="btn btn-success" onclick="goToCheckout()">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('proceed-payment').addEventListener('click', () => {
+            const recipientName = document.getElementById('recipientName').value;
+            const address = document.getElementById('address').value;
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (!recipientName || !address) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // สร้าง QR Code
+            const qrData = `Payment for Weed Inc. Total: $${total}`;
+            QRCode.toCanvas(document.getElementById('qr-code'), qrData, { width: 200 });
+            document.getElementById('total').textContent = total.toFixed(2);
+
+            // แสดงส่วน QR Code
+            document.getElementById('qr-section').style.display = 'block';
+
+            // ส่งข้อมูลไป Backend
+            fetch('/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ recipientName, address, cart, total })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Order placed successfully!');
+                    localStorage.removeItem('cart');
+                    window.location.href = '/profile';
+                } else {
+                    alert('Failed to place order.');
+                }
+            });
+        });
+
+        function goToCheckout() {
+            window.location.href = "/checkout";
+        }
+    </script>
+</body>
+</html>

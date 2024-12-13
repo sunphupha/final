@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #738880 0%, #0b1515 100%);
+            color: #ffffff;
+        }
+
+        .contact-header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .contact-header h1 {
+            font-family: 'Poiret One', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-header p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .form-section {
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .form-section h2 {
+            font-family: 'Poiret One', sans-serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-container div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-container label {
+            font-size: 2rem;
+            font-weight: bold;
+            white-space: nowrap;
+            margin-right: 10px;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            border: none;
+            border-bottom: 2px solid #ff6b6b;
+            padding: 10px 0;
+            font-size: 1.5rem;
+            background: transparent;
+            color: #ffffff;
+            width: calc(100% - 120px); /* Adjust width to align with labels */
+        }
+
+        .form-container input::placeholder,
+        .form-container textarea::placeholder {
+            color: #ff6b6b;
+        }
+
+        .form-container textarea {
+            width: 100%; /* Ensure textarea spans full width */
+        }
+
+        .form-container button {
+            background-color: transparent;
+            border: 2px solid #ff6b6b;
+            padding: 10px 20px;
+            color: #ff6b6b;
+            border-radius: 8px;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            align-self: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #ff6b6b;
+            color: #ffffff;
+        }
+
+        .footer {
+            padding: 20px 0;
+            text-align: center;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="contact-header">
+        <h1>Get In Touch</h1>
+        <p>Like what you see? Curious about what we do? Ask us anything. <br> Tell us what you need. We’ll get back to you in no time.</p>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-section">

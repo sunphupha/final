@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= cannabis ? cannabis.name : 'Cannabis Details' %> - Cannabis Details</title>
+    <!-- Bootstrap CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/cannabis-detail.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/slidebar.css">
+    <link rel="stylesheet" href="/css/navbar-footer.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <!-- Hamburger and Logo -->
+            <div class="left-section">
+                <i class="bx bx-menu" id="hamburger-icon"></i>
+                <a href="/Home" class="logo">WEED INC.</a>
+            </div>
+    
+            <!-- Center Navbar -->
+            <div class="navbar">
+                <a href="/cannabis101" class="nav-link">Cannabis 101</a>
+                <a href="/Cannabis" class="nav-link">Strains</a>
+                <a href="/HowToUse" class="nav-link">How to use</a>
+                <a href="/News" class="nav-link">News</a>
+                <a href="/FAQ" class="nav-link">FAQ</a>
+                <a href="/ContactUs" class="nav-link">Contact Us</a>
+            </div>
+    
+            <!-- Right Icons -->
+            <div class="right-icons">
+                <a href="/cart"><i class='bx bx-cart-alt icon' id="cart-icon" data-quantity="0"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>WEED INC.</h2>
+            <i class="bx bx-x close-icon" id="close-icon"></i>
+        </div>
+        <ul id="sidebar-links" class="sidebar-links">
+            <li><a href="/login">Sign In</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/cannabis101">Cannabis 101</a></li>
+            <li><a href="/Cannabis">Strains</a></li>
+            <li><a href="/HowToUse">How to use</a></li>
+            <li><a href="/News">News</a></li>
+            <li><a href="/FAQ">FAQ</a></li>
+            <li><a href="/ContactUs">Contact Us</a></li>
+        </ul>   
+    </div>
+
+    <div class="container my-5">
+        <!-- กรอบใหญ่ -->
+        <div class="content-wrapper p-4" style="border: 3px solid #ddd; border-radius: 15px; background-color: #f9f9f9;">
+            <% if (cannabis) { %>
+                <div class="row">
+                    <!-- รูปภาพด้านซ้าย -->
+                    <div class="col-md-6 text-center">
+                        <div class="image-container" style="border: 2px dashed #ccc; border-radius: 10px; padding: 15px;">
+                            <img src="<%= cannabis.image_url %>" alt="<%= cannabis.name %> Image" class="img-fluid rounded" style="max-width: 100%; height: auto;">
+                        </div>
+                        <!-- ปุ่ม Buy Now และ Add to Cart -->
+                        <div class="mt-4">
+                            <!-- ตัวเลือกน้ำหนัก -->
+                            <div class="mb-3">
+                                <label for="weight-select" class="form-label"><strong>Choose Weight:</strong></label>
+                                <select id="weight-select" class="form-select">
+                                    <option value="3.5">3.5 grams</option>
+                                    <option value="7">7 grams</option>
+                                    <option value="14">14 grams</option>
+                                    <option value="28">1 ounce (28 grams)</option>
+                                </select>
+                            </div>
+                            <button 
+                                class="btn btn-danger btn-lg w-100 mb-3" 
+                                onclick="addToCart('<%= cannabis.id %>', '<%= cannabis.name %>', <%= cannabis.price %>, document.getElementById('weight-select').value)">
+                                Add to Cart
+                            </button>
+                            <a href="/cannabis" class="btn btn-primary btn-lg w-100">Back to List</a>
+                        </div>
+                    </div>
+    
+                    <!-- รายละเอียดด้านขวา -->
+                    <div class="col-md-6">
+                        <!-- ชื่อสายพันธุ์ -->
+                        <h1 class="mb-4"><%= cannabis.name %></h1>
+    
+                        <!-- ข้อมูลสายพันธุ์ -->
+                        <p class="fs-5 mb-2"><strong>Type:</strong> <%= cannabis.type %></p>
+                        <p class="fs-5 mb-2"><strong>Parents:</strong> <%= cannabis.parents %></p>
+                        <p class="fs-5 mb-2"><strong>THC%:</strong> <%= cannabis.THC_percentage %>%</p>
+                        <p class="fs-5 mb-2"><strong>CBD%:</strong> <%= cannabis.CBD_percentage %>%</p>
+                        <p class="fs-5 mb-2"><strong>CBG%:</strong> <%= cannabis.CBG_percentage %>%</p>
+                        <p class="fs-5 mb-2"><strong>Smell & Flavour:</strong> <%= cannabis.smell_flavour %></p>
+    
+                        <!-- Effects -->
+                        <h3 class="mt-4">Strain Effects</h3>
+                        <div class="strain-effects row">
+                            <% if (cannabis.effect) { %>
+                                <% cannabis.effect.split(",").forEach(effect => { %>
+                                    <div class="col-4 mb-2">
+                                        <div class="p-3 bg-light border rounded text-center">
+                                            <span><%= effect.trim() %></span>
+                                        </div>
+                                    </div>
+                                <% }); %>
+                            <% } else { %>
+                                <p>No effects listed for this strain.</p>
+                            <% } %>
+                        </div>
+    
+                        <!-- Price -->
+                        <h3 class="mt-4">Price</h3>
+                        <p class="fs-4 text-danger">$<%= cannabis.price ? parseFloat(cannabis.price).toFixed(2) : "0.00" %></p>
+    
+                        <!-- Rating Section -->
+                        <div class="rating-section mt-5">
+                            <h3>Rate This Strain</h3>
+                            <% if (user) { %> <!-- ตรวจสอบว่ามี user -->
+                                <div class="rating-stars mb-3">
+                                    <% for (let i = 1; i <= 5; i++) { %>
+                                        <i class="bx bx-star" id="star-<%= i %>" 
+                                           style="font-size: 24px; cursor: pointer;" 
+                                           onclick="selectRating(<%= i %>)"></i>
+                                    <% } %>
+                                </div>
+                                <button id="submit-rating-btn" 
+                                        class="btn btn-primary" 
+                                        onclick="submitRating()" 
+                                        disabled>Submit Ratings</button>
+                                <p id="rating-message" class="text-success mt-2" style="display: none;">Rating submitted successfully!</p>
+                            <% } else { %>
+                                <p>You must <a href="/login">log in</a> to rate this strain.</p>
+                            <% } %>
+                        </div>
+                        
+                        <div class="comments-section mt-5">
+                            <h3>Comments</h3>
+                            <% if (user) { %>
+                                <form id="comment-form">
+                                    <textarea class="form-control mb-3" id="comment-text" rows="3" placeholder="Add your comment here"></textarea>
+                                    <button type="button" class="btn btn-primary" onclick="submitComment()">Submit</button>
+                                </form>
+                                <div id="comment-feedback" class="text-success mt-2" style="display: none;">Comment submitted successfully!</div>
+                            <% } else { %>
+                                <p>You must <a href="/login">log in</a> to comment.</p>
+                            <% } %>
+                            <div id="comments-list" class="mt-4">
+                                <% comments.forEach(comment => { %>
+                                    <div class="comment p-3 border rounded mb-2">
+                                        <strong><%= comment.user_name %>:</strong>
+                                        <p><%= comment.text %></p>
+                                    </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <!-- Error Message -->
+                    <div class="alert alert-danger text-center" role="alert">
+                        <strong>Error:</strong> Cannabis details not found.
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="/cannabis" class="btn btn-primary">Back to List</a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <h2 class="footer-heading">Get in Touch</h2>
+            <p class="footer-subheading">Got a project? Need an unfair advantage?</p>
+            <div class="row">
+                <!-- Navigation Section -->
+                <div class="col-md-4">
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="/Home">Home</a></li>
+                        <li><a href="/cannabis101">Cannabis 101</a></li>
+                        <li><a href="/Cannabis">Strains</a></li>
+                        <li><a href="/HowToUse">How to use</a></li>
+                        <li><a href="/FAQ">FAQ</a></li>
+                        <li><a href="/ContactUs">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Social Media Section -->
+                <div class="col-md-4">
+                    <h4 class="footer-title">Socials</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Line</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">X</a></li>
+                    </ul>
+                </div>
+                <!-- Resources Section -->
+                <div class="col-md-4" id="user-section">
+                    <h4 class="footer-title">User</h4>
+                    <ul class="footer-links">
+                        <li><a href="/signin" id="user-action-1">Sign in</a></li>
+                        <li><a href="/signup" id="user-action-2">Sign up</a></li>
+                    </ul>
+                </div>                
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Weed Inc. All rights reserved.</p>
+                <p>Local Time: <span id="local-time"></span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let selectedRating = 0;
+
+        function selectRating(rating) {
+            selectedRating = rating;
+
+            // อัปเดตสีของดาวที่เลือก
+            for (let i = 1; i <= 5; i++) {
+                const star = document.getElementById(`star-${i}`);
+                if (i <= rating) {
+                    star.classList.add('selected'); // เพิ่ม class selected สำหรับดาวสีเหลือง
+                } else {
+                    star.classList.remove('selected'); // ลบ class selected สำหรับดาวที่ไม่ได้เลือก
+                }
+            }
+
+            // เปิดใช้งานปุ่ม Submit
+            document.getElementById("submit-rating-btn").disabled = false;
+        }
+
+        function submitRating() {
+            if (selectedRating === 0) {
+                alert("Please select a rating!");
+                return;
+            }
+
+            fetch(`/cannabis/<%= cannabis.id %>/rate`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ rating: selectedRating })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById("rating-message").style.display = "block";
+                    setTimeout(() => {
+                        document.getElementById("rating-message").style.display = "none";
+                    }, 3000);
+                } else {
+                    alert("Error submitting rating: " + data.error);
+                }
+            })
+            .catch(err => console.error("Error:", err));
+        }
+    
+    function submitComment() {
+        const commentText = document.getElementById("comment-text").value;
+        fetch(`/cannabis/<%= cannabis.id %>/comment`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: commentText })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // แสดงข้อความสำเร็จ
+                document.getElementById("comment-feedback").style.display = "block";
+                // อัปเดตคอมเมนต์ใหม่
+                const commentsList = document.getElementById("comments-list");
+                const newComment = document.createElement("div");
+                newComment.classList.add("comment", "p-3", "border", "rounded", "mb-2");
+                newComment.innerHTML = `<strong>You:</strong><p>${commentText}</p>`;
+                commentsList.prepend(newComment);
+                document.getElementById("comment-text").value = "";
+            } else {
+                console.error(data.error);
+            }
+        })
+        .catch(err => console.error("Error:", err));
+    }
+    
+    </script>    
+
+    <script src="/js/add_cart.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/userLogin.js"></script>
+
+</body>
+</html>

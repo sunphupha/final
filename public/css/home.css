@@ -1,0 +1,98 @@
+/* Hero Section */
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    background: url('/img/bg_home.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-heading {
+    font-family: 'Poiret One', cursive;
+    font-size: 5rem; /* Large text for emphasis */
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
+    color: #f46036; /* Bright orange */
+    background-color: transparent;
+    border: 2px solid #f46036;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #f46036;
+    color: white;
+}
+
+.about-section {
+    height: 100vh;
+    background: url('/img/bg_home2.jpg') no-repeat center center/cover;
+    padding: 60px 30px;
+    color: white;
+}
+
+.about-section h2 {
+    font-family: 'Poiret One', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Mission Section */
+.mission-section {
+    height: 100vh; /* Makes the section fill the full viewport height */
+    padding: 60px 30px;
+    background-color: #0b1515; /* Use the dark green color */
+    color: #f2e891; /* Use the soft yellow for text contrast */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    text-align: center;
+}
+
+.mission-section h2 {
+    font-family: 'Poiret One', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #f7d358; /* Bright yellow for the heading */
+}
+
+.mission-section p {
+    font-family: 'Lato', sans-serif; /* Use the subtext font */
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 10px;
+    color: #f4f9f8; /* Light green text for better readability */
+}
+
+.mission-section .value-line {
+    border-bottom: 2px solid #f2e891; /* Soft yellow line for emphasis */
+    width: 50%;
+    margin: 20px auto; /* Center the line */
+}
+
+

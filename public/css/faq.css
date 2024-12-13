@@ -1,0 +1,68 @@
+
+.hero-section {
+    background-color: #2e4543;
+    color: #f4f9f8;
+    text-align: center;
+    padding: 60px 30px;
+}
+
+.hero-section h1 {
+    font-family: 'Poiret One', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.faq-container {
+    padding: 40px 30px;
+}
+
+.faq-title {
+    font-family: 'Poiret One', cursive;
+    font-size: 2.5rem;
+    color: #2e4543;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.accordion-button {
+    background-color: #2e4543;
+    color: #f4f9f8;
+    font-weight: bold;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.accordion-button:hover {
+    background-color: #486284;
+    color: #f7d358;
+}
+
+.accordion-item {
+    margin-bottom: 15px;
+}
+
+.accordion-body {
+    background-color: #f4f9f8;
+    color: #0b1515;
+    font-size: 1rem;
+}
+
+.contact-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.contact-section a {
+    color: #f46036;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.contact-section a:hover {
+    text-decoration: underline;
+}

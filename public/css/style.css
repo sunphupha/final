@@ -1,0 +1,156 @@
+
+/* General Styles */
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* General Spacing */
+section {
+    margin-bottom: 50px;
+    padding: 40px 20px;
+}
+
+
+/* Carousel */
+.carousel-container {
+    background: linear-gradient(135deg, #1e1e2a, #485563);
+    padding: 50px 0;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.carousel-item img {
+    max-height: 350px; /* ลดความสูงของภาพ */
+    object-fit: cover;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-item img {
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+/* About Section */
+.about {
+    background: #ffffff;
+    padding: 60px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #486284;
+}
+
+.about p {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+/* Features Section */
+.features {
+    padding: 60px 20px;
+    border-radius: 10px;
+}
+
+.features .col-md-4 {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.features .col-md-4:hover {
+    transform: scale(1.05);
+}
+
+.features h4 {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #1e1e2a;
+}
+
+.features p {
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Products Section */
+.product {
+    background: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #486284;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card .btn-primary {
+    background-color: #486284;
+    border: none;
+}
+
+.card .btn-primary:hover {
+    background-color: #1e1e2a;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+    padding: 80px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.testimonials h2 {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: #486284;
+}
+
+.testimonials p {
+    font-style: italic;
+    color: #555;
+}
+
+.testimonials h5 {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #1e1e2a;
+}

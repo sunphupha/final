@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://ui.aceternity.com/components/background-gradient.css" rel="stylesheet">
+    <title>Cannabis List</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/slidebar.css">
+    <link rel="stylesheet" href="/css/navbar-footer.css">
+    <link rel="stylesheet" href="/css/cannabis_list.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <!-- Hamburger and Logo -->
+            <div class="left-section">
+                <i class="bx bx-menu" id="hamburger-icon"></i>
+                <a href="/Home" class="logo">WEED INC.</a>
+            </div>
+    
+            <!-- Center Navbar -->
+            <div class="navbar">
+                <a href="/cannabis101" class="nav-link">Cannabis 101</a>
+                <a href="/Cannabis" class="nav-link">Strains</a>
+                <a href="/HowToUse" class="nav-link">How to use</a>
+                <a href="/News" class="nav-link">News</a>
+                <a href="/FAQ" class="nav-link">FAQ</a>
+                <a href="/ContactUs" class="nav-link">Contact Us</a>
+            </div>
+    
+            <!-- Right Icons -->
+            <div class="right-icons">
+                <a href="/cart"><i class='bx bx-cart-alt icon' id="cart-icon" data-quantity="0"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>WEED INC.</h2>
+            <i class="bx bx-x close-icon" id="close-icon"></i>
+        </div>
+        <ul id="sidebar-links" class="sidebar-links">
+            <li><a href="/login">Sign In</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/cannabis101">Cannabis 101</a></li>
+            <li><a href="/Cannabis">Strains</a></li>
+            <li><a href="/HowToUse">How to use</a></li>
+            <li><a href="/News">News</a></li>
+            <li><a href="/FAQ">FAQ</a></li>
+            <li><a href="/ContactUs">Contact Us</a></li>
+        </ul>   
+    </div>
+
+    <div class="filter-bar">
+        <!-- Search and Filter Inputs -->
+        <input type="text" id="searchInput" placeholder="Search your favorite strains here!" />
+        <button id="searchButton">🔍</button>
+
+        <!-- Dropdown Filters -->
+        <select id="strainTypeFilter">
+            <option value="">Strain Type</option>
+            <option value="Sativa">Sativa</option>
+            <option value="Indica">Indica</option>
+            <option value="Hybrid">Hybrid</option>
+        </select>
+
+        <select id="thcFilter">
+            <option value="">THC%</option>
+            <option value="desc">High to Low</option>
+            <option value="asc">Low to High</option>
+        </select>
+
+        <select id="cbdFilter">
+            <option value="">CBD%</option>
+            <option value="desc">High to Low</option>
+            <option value="asc">Low to High</option>
+        </select>
+
+        <select id="effectFilter">
+            <option value="">Effect</option>
+            <option value="Relaxing">Relaxing</option>
+            <option value="Euphoric">Euphoric</option>
+            <option value="Energetic">Energetic</option>
+            <option value="Calming">Calming</option>
+            <option value="Uplifting">Uplifted</option>
+            <option value="Sleepy">Sleepy</option>
+            <option value="Creative">Creative</option>
+            <option value="Social">Social</option>
+            <option value="Focused">Focused</option>
+        </select>
+
+        <button id="resetFilters">Reset Filters</button>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <% cannabisStrains.forEach(strain => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" onclick="redirectToDetail('<%= strain.id %>')" data-aos="fade-up">
+                        <img src="<%= strain.main_url %>" alt="<%= strain.name %>" class="rounded w-100 mb-3 object-cover">
+                        <h5 class="text-black font-bold text-lg mb-2"><%= strain.name %></h5>
+                        <p class="text-gray-200 mb-2"><%= strain.effect %></p>
+                        <p class="text-gray-300 mb-4">
+                            <strong>THC:</strong> <%= strain.THC_percentage %>% | 
+                            <strong>CBD:</strong> <%= strain.CBD_percentage %>% 
+                        </p>
+                        <div class="rating mb-3">
+                            <% for (let i = 1; i <= 5; i++) { %>
+                                <% if (i <= Math.round(strain.average_rating)) { %>
+                                    <i class="bx bxs-star text-yellow-400"></i>
+                                <% } else { %>
+                                    <i class="bx bx-star text-yellow-400"></i>
+                                <% } %>
+                            <% } %>
+                            <span class="text-gray-300">(<%= strain.total_ratings %>)</span>
+                        </div>
+                        <div class="mt-3">
+                            <label for="weight-<%= strain.id %>" class="text-gray-200">Select Weight:</label>
+                            <select id="weight-<%= strain.id %>" class="form-select form-select-sm my-2" onclick="event.stopPropagation();">
+                                <option value="3.5">3.5 grams</option>
+                                <option value="7">7 grams</option>
+                                <option value="14">14 grams</option>
+                                <option value="28">1 ounce</option>
+                            </select>
+                            <button class="btn btn-primary btn-sm" 
+                                    onclick="event.stopPropagation(); addToCart('<%= strain.id %>', '<%= strain.name %>', <%= strain.price %>, document.getElementById('weight-<%= strain.id %>').value)">
+                                Add to Cart
+                            </button>
+                            <button class="btn btn-warning btn-sm" 
+                                onclick="event.stopPropagation(); buyNow('<%= strain.id %>', '<%= strain.name %>', <%= strain.price %>, document.getElementById('weight-<%= strain.id %>').value)">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>    
+
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkoutModalLabel">Enter Your Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="checkout-form">
+                        <!-- Hidden Field สำหรับ Product ID -->
+                        <input type="hidden" id="checkout-product-id">
+    
+                        <!-- ชื่อสินค้า -->
+                        <div class="mb-3">
+                            <label for="checkout-product-name" class="form-label">Product</label>
+                            <p id="checkout-product-name"></p>
+                        </div>
+    
+                        <!-- ราคาสินค้า -->
+                        <div class="mb-3">
+                            <label for="checkout-product-price" class="form-label">Price</label>
+                            <p id="checkout-product-price"></p>
+                        </div>
+    
+                        <!-- ราคาทั้งหมด -->
+                        <input type="hidden" id="checkout-total-price">
+    
+                        <!-- ชื่อผู้รับ -->
+                        <div class="mb-3">
+                            <label for="recipient-name" class="form-label">Recipient Name</label>
+                            <input type="text" id="recipient-name" class="form-control" placeholder="Enter recipient name" required>
+                        </div>
+    
+                        <!-- ที่อยู่ -->
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <textarea id="address" class="form-control" rows="3" placeholder="Enter delivery address" required></textarea>
+                        </div>
+    
+                        <!-- ปุ่มยืนยัน -->
+                        <div class="text-end">
+                            <button type="button" id="confirm-checkout" class="btn btn-success">Confirm & Checkout</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrCodeModalLabel">Scan to Pay</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="qr-code-image" src="" alt="QR Code" class="img-fluid">
+                    <p>Total: $<span id="qr-code-total"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <h2 class="footer-heading">Get in Touch</h2>
+            <p class="footer-subheading">Got a project? Need an unfair advantage?</p>
+            <div class="row">
+                <!-- Navigation Section -->
+                <div class="col-md-4">
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="/Home">Home</a></li>
+                        <li><a href="/cannabis101">Cannabis 101</a></li>
+                        <li><a href="/Cannabis">Strains</a></li>
+                        <li><a href="/HowToUse">How to use</a></li>
+                        <li><a href="/FAQ">FAQ</a></li>
+                        <li><a href="/ContactUs">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Social Media Section -->
+                <div class="col-md-4">
+                    <h4 class="footer-title">Socials</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Line</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">X</a></li>
+                    </ul>
+                </div>
+                <!-- Resources Section -->
+                <div class="col-md-4" id="user-section">
+                    <h4 class="footer-title">User</h4>
+                    <ul class="footer-links">
+                        <li><a href="/signin" id="user-action-1">Sign in</a></li>
+                        <li><a href="/signup" id="user-action-2">Sign up</a></li>
+                    </ul>
+                </div>                
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Weed Inc. All rights reserved.</p>
+                <p>Local Time: <span id="local-time"></span></p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+    const strainTypeFilter = document.getElementById("strainTypeFilter");
+    const thcFilter = document.getElementById("thcFilter");
+    const cbdFilter = document.getElementById("cbdFilter");
+    const effectFilter = document.getElementById("effectFilter");
+    const resetButton = document.getElementById("resetFilters");
+
+    // ฟังก์ชันอัปเดต Filters
+    function updateFilters() {
+        const query = `?search=${searchInput.value}&strainType=${strainTypeFilter.value}&thc=${thcFilter.value}&cbd=${cbdFilter.value}&effect=${effectFilter.value}`;
+        window.location.href = "/cannabis" + query;
+    }
+
+    // เมื่อกดปุ่ม Search
+    searchButton.addEventListener("click", updateFilters);
+
+    // เมื่อกดปุ่ม Reset Filters
+    resetButton.addEventListener("click", () => {
+        searchInput.value = "";
+        strainTypeFilter.value = "";
+        thcFilter.value = "";
+        cbdFilter.value = "";
+        effectFilter.value = "";
+        updateFilters();
+    });
+
+    // ตัวกรองอื่นๆ
+    strainTypeFilter.addEventListener("change", updateFilters);
+    thcFilter.addEventListener("change", updateFilters);
+    cbdFilter.addEventListener("change", updateFilters);
+    effectFilter.addEventListener("change", updateFilters);
+
+    // ฟังก์ชันตั้งค่าฟิลด์ตาม URL
+    function setFiltersFromURL() {
+        const params = new URLSearchParams(window.location.search);
+
+        // ตั้งค่าฟิลด์สำหรับตัวกรอง
+        if (params.has("search")) searchInput.value = params.get("search");
+        if (params.has("strainType")) strainTypeFilter.value = params.get("strainType");
+        if (params.has("thc")) thcFilter.value = params.get("thc");
+        if (params.has("cbd")) cbdFilter.value = params.get("cbd");
+        if (params.has("effect")) effectFilter.value = params.get("effect");
+    }
+
+    // เรียกใช้ฟังก์ชันเพื่อดึงค่าจาก URL และตั้งค่าเริ่มต้น
+    setFiltersFromURL();
+});
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Redirect to detail page
+        window.redirectToDetail = (id) => {
+            window.location.href = `/cannabis/${id}`;
+        };
+    });
+    
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            AOS.init({
+                duration: 1000, // กำหนดระยะเวลาของแอนิเมชัน
+                once: true, // ให้แอนิเมชันเล่นเพียงครั้งเดียว
+            });
+        });
+    </script>
+    
+    <script src="/js/add_cart.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/buynow.js"></script>
+    <script src="/js/userLogin.js"></script>
+
+</body>
+</html>

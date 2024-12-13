@@ -1,0 +1,127 @@
+
+
+.cannabis-header {
+    display: flex; /* ใช้ flexbox เพื่อจัดตำแหน่ง */
+    flex-direction: column; /* จัดเรียงในแนวตั้ง */
+    justify-content: center; /* กึ่งกลางในแนวตั้ง */
+    align-items: flex-start; /* ชิดซ้าย */
+    padding-left: 50px; /* เพิ่มระยะห่างจากขอบซ้าย */
+    text-align: center;
+    padding: 40px 20px;
+    background: url('/img/bg_home2.jpg');
+    background-size: cover; /* ทำให้ภาพครอบคลุมกรอบ */
+    background-position: center 65%; /* เลื่อนตำแหน่งภาพขึ้น 30% */
+    color: #ffffff;
+    border-bottom: 3px solid #ff6b6b;
+    height: 450px; /* เพิ่มความสูงเพื่อให้เห็นส่วนที่ต้องการมากขึ้น */
+}
+    
+        .cannabis-header img {
+            width: 100%; /* ทำให้รูปกว้างพอดีกับกรอบ */
+            height: 100%; /* ทำให้สูงพอดีกับกรอบ */
+            object-fit: cover; /* ปรับภาพให้พอดีกรอบโดยไม่เสียสัดส่วน */
+        }
+        
+        
+        .cannabis-header h1 {
+            font-size: 7.5rem; /* ขนาดตัวอักษร */
+            color: #ffffff; /* สีของข้อความ */
+            margin: 0; /* ลบระยะห่างรอบข้อความ */
+        }
+        
+        .cannabis-header p {
+            font-size: 1.2rem;
+            color: #dcdcdc; /* ข้อความรองเป็นสีเทาอ่อน */
+        }
+        
+
+        .search-bar {
+            position: relative;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .search-bar button i {
+            font-size: 1.2rem;
+            color: #888;
+        }
+
+        .description {
+            text-align: center;
+            margin-top: 20px;
+            padding: 0 20px;
+            color: #555;
+        }
+
+        .cannabis-blocks {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            padding: 40px 20px;
+        }
+        
+        .cannabis-block {
+            height: 150px;
+            width: 100%; /* เพิ่มความกว้างเต็มบล็อก */
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden; /* ซ่อนส่วนที่เกินออกจากขอบ */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            text-decoration: none;
+            color: #486284;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .cannabis-block img {
+            width: 100%; /* ให้รูปเต็มความกว้างของบล็อก */
+            height: 100%; /* ให้รูปเต็มความสูงของบล็อก */
+            object-fit: cover; /* ปรับรูปให้ครอบคลุมบล็อกอย่างเหมาะสม */
+            border-radius: 10px; /* ให้ขอบภาพโค้งเหมือนบล็อก */
+        }
+        
+        .cannabis-block span {
+            position: absolute;
+            bottom: 10px;
+            background: rgba(0, 0, 0, 0.5); /* ใส่พื้นหลังแบบโปร่งใส */
+            color: white; /* เปลี่ยนสีข้อความให้มองเห็นได้ชัดเจน */
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        
+        
+        .cannabis-block:hover span {
+            color: #ff6b6b; /* สีข้อความเมื่อ hover */
+        }
+        
+        .cannabis-block:hover {
+            background-color: #e6e6e6; /* สีพื้นหลังเมื่อ hover */
+        }
+        
+
+        

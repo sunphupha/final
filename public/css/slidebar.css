@@ -1,0 +1,67 @@
+/* Sidebar */
+#hamburger-icon {
+    font-size: 30px; /* เพิ่มขนาดของไอคอน */
+    cursor: pointer;
+    position: relative;
+    z-index: 1100; /* ให้อยู่ด้านบนสุด */
+    color: white; /* สีของไอคอน */
+    transition: transform 0.2s ease-in-out;
+}
+
+#hamburger-icon:hover {
+    transform: scale(1.2); /* เพิ่มการขยายขนาดเมื่อ hover */
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Hide Sidebar */
+    height: 100%;
+    width: 300px;
+    background-color: #2e4543; /* Deep Green */
+    color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
+    z-index: 1500; /* Under Hamburger Icon */
+    overflow-y: auto;
+}
+
+#sidebar.active {
+    left: 0; /* Show Sidebar */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #738880; /* Gray Green */
+    font-size: 1.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.close-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-links li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f4f9f8; /* Light Green */
+}
+
+.sidebar-links li a {
+    text-decoration: none;
+    color: #f4f9f8;
+    font-weight: bold;
+}
+
+.sidebar-links li a:hover {
+    color: #f2e891; /* Soft Yellow */
+}
